@@ -1,0 +1,27 @@
+{
+  "name": "expressincontext",
+  "version": "0.0.1",
+  "description": "Simple Express Server with PayPal In-Context Example",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ppnsanders/paypal-examples.git"
+  },
+  "keywords": [
+    "PayPal"
+  ],
+  "author": "Nate Sanders",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ppnsanders/paypal-examples/issues"
+  },
+  "homepage": "https://github.com/ppnsanders/paypal-examples#readme",
+  "dependencies": {
+    "async": "^1.5.2",
+    "express": "^4.13.4",
+    "paypal-rest-sdk": "^1.6.8"
+  }
+}
