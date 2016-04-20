@@ -1,4 +1,4 @@
-# PayPal Examples
+# PayPal NodeJS Examples
 
 ## How to use these examples
 
