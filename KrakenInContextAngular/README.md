@@ -17,7 +17,7 @@ When you click the button, this does calls the `doCheckout` function in the Angu
 
 The Terminal will display the following:
 
-```
+```json
 ----------------------------------------------------------
 ----------         PAYMENT_DETAILS OBJ          ----------
 ----------------------------------------------------------
@@ -28,7 +28,7 @@ After receiving the Request POST, we'll run these functions:
 
 `paypal.generate_token()`, the token response will display:
 
-```
+```json
 ----------------------------------------------------------
 ----------       ACCESS TOKEN RESPONSE          ----------
 ----------------------------------------------------------
@@ -37,7 +37,7 @@ After receiving the Request POST, we'll run these functions:
 
 Once a token is created the `paypal.payment.create()` function will run using the Payment details passed from the front-end angular app to create the payment token.
 
-```
+```json
 ----------------------------------------------------------
 ----------     CREATE PAYMENT RESPONSE          ----------
 ----------------------------------------------------------
@@ -47,7 +47,7 @@ Once a token is created the `paypal.payment.create()` function will run using th
 Since we want to force the In-Context experience, we modify the URL from `www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-XXXXX...` to `www.sandbox.paypal.com/checkoutnow?token=EC-7DN22424UX202480U`.
 
 
-```
+```json
 ------ Token Split ------
 { redirectUrl: 'https://www.sandbox.paypal.com/checkoutnow?token=EC-7DN22424UX202480U',
   token: 'EC-7DN22424UX202480U' }
@@ -55,7 +55,7 @@ Since we want to force the In-Context experience, we modify the URL from `www.sa
 
 After the URL is modified we respond to the front-end app using the `res.json()` function.
 
-```
+```json
 ----------------------------------------------------------
 ----------        RESPONSE TO ANGULAR           ----------
 ----------------------------------------------------------
@@ -70,7 +70,7 @@ The Angular directive, receives the response object, and initiates `paypal.check
 
 At this point the user is returned to `http://localhost:8000/return/#?paymentId=PAY-1CX117288G942581AK4LUQYA&token=EC-7DN22424UX202480U&PayerID=N9DBPUZ67JDBC`.  Angular will take the query params from the URL, and do a `POST` to the `/api/getPaymentDetails` endpoint.
 
-```
+```json
 ----------------------------------------------------------
 --------------  PAYMENT DETAILS REQUEST  ----------------
 ----------------------------------------------------------
@@ -79,7 +79,7 @@ At this point the user is returned to `http://localhost:8000/return/#?paymentId=
 
 The API controller used the query params to run the `paypal.payment.get()` function.  The server then sends the details to the Angular App via the `res.json()` function.
 
-```
+```json
 ----------------------------------------------------------
 --------------  PAYMENT DETAILS RESPONSE  ----------------
 ----------------------------------------------------------
@@ -90,7 +90,7 @@ At this point, Angular displays the information on the page in a simple table, w
 
 The `/api/executePayment`, runs the `paypal.payment.execute()` function to complete the payment.
 
-```
+```json
 ----------------------------------------------------------
 ---------------  EXECUTE PAYMENT REQUEST -----------------
 ----------------------------------------------------------
@@ -100,7 +100,7 @@ The `/api/executePayment`, runs the `paypal.payment.execute()` function to compl
 
 The response is then sent back to Angular via the `res.json()` function.
 
-```
+```json
 ----------------------------------------------------------
 ---------------  EXECUTE PAYMENT RESPONSE ----------------
 ----------------------------------------------------------
