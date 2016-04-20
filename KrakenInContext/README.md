@@ -52,8 +52,10 @@ Since we want to force the In-Context experience, we modify the URL from `www.sa
 
 ```json
 ------ Token Split ------
-{ redirectUrl: 'https://www.sandbox.paypal.com/checkoutnow?useraction=commit&token=EC-7L647897K83050422',
-  token: 'EC-7L647897K83050422' }
+{ 
+	"redirectUrl": "https://www.sandbox.paypal.com/checkoutnow?useraction=commit&token=EC-7L647897K83050422",
+  	"token": "EC-7L647897K83050422" 
+}
 ```
 
 After the URL is modified we redirect the user to PayPal and open the In-Context window.

@@ -49,8 +49,10 @@ Since we want to force the In-Context experience, we modify the URL from `www.sa
 
 ```json
 ------ Token Split ------
-{ redirectUrl: 'https://www.sandbox.paypal.com/checkoutnow?token=EC-7DN22424UX202480U',
-  token: 'EC-7DN22424UX202480U' }
+{ 
+	"redirectUrl": "https://www.sandbox.paypal.com/checkoutnow?token=EC-7DN22424UX202480U",
+  	"token": "EC-7DN22424UX202480U" 
+}
 ```
 
 After the URL is modified we respond to the front-end app using the `res.json()` function.
