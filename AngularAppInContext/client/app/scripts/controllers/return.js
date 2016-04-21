@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:AboutCtrl
+ * @name clientApp.controller:ReturnCtrl
  * @description
- * # AboutCtrl
+ * # ReturnCtrl
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('AboutCtrl', function () {
+  .controller('ReturnCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

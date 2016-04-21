@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/ppnsanders/paypal-examples#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "async": "^1.5.2",
+    "express": "^4.13.4",
+    "paypal-rest-sdk": "^1.6.8"
   }
 }

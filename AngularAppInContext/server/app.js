@@ -1,7 +1,10 @@
 var express = require('express'),
 	app = module.exports = express(),
 	path = require('path'),
-	stat = require('serve-static');
+	paypal = require('paypal-rest-sdk'),
+	stat = require('serve-static'),
+	ppconfig = require('../../data/config'),
+	router = require('./router');
 
 var data = require(path.resolve(__dirname, 'development.json'));
 	console.log('data', data);
@@ -18,10 +21,15 @@ var data = require(path.resolve(__dirname, 'development.json'));
 		}
 	});
 
-app.get('*', function (req, res) {
-	res.sendFile(path.resolve(app.get('htmlpath') + '/index.html'));
-	//res.json({ htmlPath: htmlPath });
-});
+	paypal.configure({
+	    'mode': 'sandbox', //sandbox or live
+	    'client_id': ppconfig.client_id,
+	    'client_secret': ppconfig.client_secret,
+	    'grant_type': 'client_credentials',
+	    'content_type': 'application/x-www-form-urlencoded'
+	});
+
+	app.use('*', router);
 
 if(!module.parent) {
 	app.listen(3000);
