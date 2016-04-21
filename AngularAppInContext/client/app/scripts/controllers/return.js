@@ -8,10 +8,8 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('ReturnCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('ReturnCtrl', ['$scope', '$location', 'apiModel', function($scope, $location, apiModel) {
+    $scope.model = apiModel;
+    $scope.model.queryParams = $location.search();
+	$scope.model.getPaymentDetails();
+  }]);

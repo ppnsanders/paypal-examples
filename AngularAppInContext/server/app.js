@@ -4,6 +4,7 @@ var express = require('express'),
 	paypal = require('paypal-rest-sdk'),
 	stat = require('serve-static'),
 	ppconfig = require('../../data/config'),
+	bodyParser = require('body-parser'),
 	router = require('./router');
 
 var data = require(path.resolve(__dirname, 'development.json'));
@@ -20,6 +21,10 @@ var data = require(path.resolve(__dirname, 'development.json'));
 			app.use(dirMiddleware);
 		}
 	});
+	
+	app.use(bodyParser.json()); // for parsing application/json
+	app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+	app.use(router);
 
 	paypal.configure({
 	    'mode': 'sandbox', //sandbox or live
@@ -28,8 +33,6 @@ var data = require(path.resolve(__dirname, 'development.json'));
 	    'grant_type': 'client_credentials',
 	    'content_type': 'application/x-www-form-urlencoded'
 	});
-
-	app.use('*', router);
 
 if(!module.parent) {
 	app.listen(3000);

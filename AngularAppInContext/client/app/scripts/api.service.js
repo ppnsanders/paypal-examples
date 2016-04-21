@@ -7,6 +7,7 @@ angular.module('clientApp').service('apiModel', function($http, $cookies, $locat
             'xsrfHeaderName': 'X-CSRF-TOKEN',
             'xsrfCookieName': 'XSRF-TOKEN'
         };
+        console.log(model.pmtData);
         return $http.post(reqUrl, model.pmtData, config).
 	        success(function (response) {
 	            model.createPaymentResponse = response;
@@ -57,8 +58,8 @@ angular.module('clientApp').service('apiModel', function($http, $cookies, $locat
 		pmtData: {
 	        intent:'sale',
 	        redirect_urls:{
-	            return_url:'http://localhost:3000/return/#',
-	            cancel_url:'http://localhost:3000/cancel/#'
+	            return_url:'http://localhost:3000/#/return',
+	            cancel_url:'http://localhost:3000/#/cancel'
 	        },
 	        payer:{
 	            payment_method:'paypal'

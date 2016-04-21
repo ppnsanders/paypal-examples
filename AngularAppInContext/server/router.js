@@ -4,21 +4,19 @@ var express = require('express'),
 	app = module.exports = express(),
 	paypal = require('paypal-rest-sdk'),
 	async = require('async'),
+	bodyParser = require('body-parser'),
+	multer = require('multer'),
 	router = express.Router();
-
-router.use(function (req, res, next) {
-	next();
-});
 
 router.get('/', function (req, res) {
 	res.cookie('XSRF-TOKEN', res.locals._csrf); //setting a cookie that is accessible by Angular
 	res.sendFile(path.resolve(app.get('htmlpath') + '/index.html'));
 });
 
-
 /****************** APIs for Angular *********************/
 
 router.post('/api/createPayment', function (req, res) {
+		console.log(req.body);
         var reqObj = req.body;
         console.log('----------------------------------------------------------');
         console.log('----------         PAYMENT_DETAILS OBJ          ----------');
@@ -79,7 +77,7 @@ router.post('/api/createPayment', function (req, res) {
         });
     });
 
-	router.post('/getPaymentDetails', function (req, res) {
+	router.post('/api/getPaymentDetails', function (req, res) {
 		console.log('----------------------------------------------------------');
         console.log('--------------  PAYMENT DETAILS REQUEST  ----------------');
         console.log('----------------------------------------------------------');
@@ -99,7 +97,7 @@ router.post('/api/createPayment', function (req, res) {
         });
 	});
 
-	router.post('/executePayment', function (req, res) {
+	router.post('/api/executePayment', function (req, res) {
         console.log('----------------------------------------------------------');
         console.log('---------------  EXECUTE PAYMENT REQUEST -----------------');
         console.log('----------------------------------------------------------');
@@ -121,3 +119,5 @@ router.post('/api/createPayment', function (req, res) {
             }
             });
     });
+
+module.exports = router;
