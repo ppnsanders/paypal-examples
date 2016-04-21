@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "ExpressJS Server for Angular App",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ppnsanders/paypal-examples.git"
+  },
+  "keywords": [
+    "PayPal"
+  ],
+  "author": "Nate Sanders",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ppnsanders/paypal-examples/issues"
+  },
+  "homepage": "https://github.com/ppnsanders/paypal-examples#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
