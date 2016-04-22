@@ -1,18 +1,125 @@
-<div>
-	<table border="1" ng-show="model.executePaymentButton">
-		<tr><td colspan="2"><center><strong>PAYMENT DETAILS</strong></center></td></tr>
-		<tr><th>KEY</th><th>VALUE</th></tr>
-		<tr ng-repeat="(key, value) in model.paymentDetails">
-			<td>{{key}}</td><td>{{ value | json }}</td>
-		</tr>
-	</table>
-	<h3 ng-show="model.executePaymentButton">Continue:</h3>
-	<button style="margin-top: 20px; height: 60px; width: 100px; border-radius: 4px; background-color: blue; color: #FFF;" ng-show="model.executePaymentButton" ng-click="model.executePayment()"><strong>Execute Payment</strong></button>
-	<table border="1" ng-show="!model.executePaymentButton">
-		<tr><td style="background-color: green;" colspan="2"><center><strong>PAYMENT COMPLETE</strong></center></td></tr>
-		<tr><th>KEY</th><th>VALUE</th></tr>
-		<tr ng-repeat="(key, value) in model.completePaymentDetails">
-			<td>{{key}}</td><td>{{ value | json }}</td>
-		</tr>
-	</table>
+<div class="row">
+    <div id="loading" style="display: none;" class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <center><img src="../images/loading.gif" /></center>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <center><h4>Loading...</h4></center>
+            </div>
+        </div>
+    </div>
+    <div id="paymentDetails" style="display: none; margin-bottom: 30px;" class="col-md-12">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Your Shipping Address</h3>
+                        <hr />
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <address>
+                              <strong>{{model.paymentDetails.payer.payer_info.shipping_address.recipient_name}}</strong><br />
+                              {{model.paymentDetails.payer.payer_info.shipping_address.line1}}<br />
+                              {{model.paymentDetails.payer.payer_info.shipping_address.city}}, {{model.paymentDetails.payer.payer_info.shipping_address.state}} {{model.paymentDetails.payer.payer_info.shipping_address.postal_code}}<br />
+                              <abbr title="Phone">P:</abbr> {{model.paymentDetails.payer.payer_info.phone}}
+                            </address>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3>Your Payment Details</h3>
+                        <hr />
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr><td><strong>Email:</strong></td><td>{{model.paymentDetails.payer.payer_info.email}}</td></tr>
+                                    <tr><td><strong>Payment Method:</strong></td><td><img height="50px" width="49px" src="../images/pp_mark_icon.png" /></td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Order Details</h3>
+                        <hr />
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <table class="table table-striped">
+                                <tr><th>Item Name</th><th>Item Desc.</th><th>Quantity</th><th>Price Each</th></tr>
+                                <tr ng-repeat="item in model.paymentDetails.transactions[0].item_list.items">
+                                    <td>{{item.name}}</td><td>{{item.description}}</td><td>{{item.quantity}}</td><td>{{item.price | currency: model.currencySymbol}}</td>
+                                </tr>
+                                <tr><td colspan="2"></td><td><strong>Subtotal:</strong></td><td>{{model.paymentDetails.transactions[0].amount.details.subtotal | currency: model.currencySymbol}}</td></tr>
+                                <tr><td colspan="2"></td><td><strong>Shipping:</strong></td><td>{{model.paymentDetails.transactions[0].amount.details.shipping | currency: model.currencySymbol}}</td></tr>
+                                <tr><td colspan="2"></td><td><strong>Total:</strong></td><td><strong>{{model.paymentDetails.transactions[0].amount.total | currency: model.currencySymbol}}</strong></td></tr>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-primary btn-lg btn-block pull-right" ng-click="model.executePayment()">Place Order</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+		</div>
+	</div>
+    <div id="completePaymentDetails" style="display: none;" class="col-md-12">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Your Receipt</h3>
+                <hr />
+                <div class="row">
+                    <div class="col-md-6">
+                        <table class="table table-striped">
+                            <tr><td>Order Number:</td><td>{{model.completePaymentDetails.transactions[0].related_resources[0].sale.id}}</td></tr>
+                            <tr><td>Payment Method:</td><td><img height="50px" width="49px" src="../images/pp_mark_icon.png" /></td></tr>
+                            <tr><td>Total Charged:</td><td><strong>{{model.completePaymentDetails.transactions[0].amount.total | currency: model.currencySymbol}}</strong></td></tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h4>Ship To:</h4>
+                                <address>
+                                    <strong>{{model.completePaymentDetails.payer.payer_info.shipping_address.recipient_name}}</strong><br />
+                                    {{model.completePaymentDetails.payer.payer_info.shipping_address.line1}}<br />
+                                    {{model.completePaymentDetails.payer.payer_info.shipping_address.city}}, {{model.completePaymentDetails.payer.payer_info.shipping_address.state}} {{model.completePaymentDetails.payer.payer_info.shipping_address.postal_code}}<br />
+                                    <abbr title="Phone">P:</abbr> {{model.completePaymentDetails.payer.payer_info.phone}}
+                                </address>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Order Details</h3>
+                        <hr />
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            <table class="table table-striped">
+                                <tr><th>Item Name</th><th>Item Desc.</th><th>Quantity</th><th>Price Each</th></tr>
+                                <tr ng-repeat="item in model.completePaymentDetails.transactions[0].item_list.items">
+                                    <td>{{item.name}}</td><td>{{item.description}}</td><td>{{item.quantity}}</td><td>{{item.price | currency: model.currencySymbol}}</td>
+                                </tr>
+                                <tr><td colspan="2"></td><td><strong>Subtotal:</strong></td><td>{{model.completePaymentDetails.transactions[0].amount.details.subtotal | currency: model.currencySymbol}}</td></tr>
+                                <tr><td colspan="2"></td><td><strong>Shipping:</strong></td><td>{{model.completePaymentDetails.transactions[0].amount.details.shipping | currency: model.currencySymbol}}</td></tr>
+                                <tr><td colspan="2"></td><td><strong>Total:</strong></td><td><strong>{{model.completePaymentDetails.transactions[0].amount.total | currency: model.currencySymbol}}</strong></td></tr>
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
 </div>
