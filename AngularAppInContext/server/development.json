@@ -1,0 +1,11 @@
+{
+	"static": [
+		{
+			"dir": "/../client/app/"
+		},
+		{
+			"dir": "/../client/bower_components/",
+			"path": "/bower_components/"
+		}
+	]
+}
