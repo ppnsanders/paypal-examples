@@ -1,0 +1,25 @@
+{
+  "name": "hapiincontext",
+  "description": "HapiJS with PayPal Checkout",
+  "main": "server.js",
+  "authors": [
+    "Nate Sanders"
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "PayPal",
+    "Hapi"
+  ],
+  "homepage": "https://github.com/ppnsanders/paypal-examples",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
