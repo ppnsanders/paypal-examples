@@ -21,15 +21,36 @@ git clone https://github.com/ppnsanders/paypal-examples.git
 
 ### Using the specific examples.
 
-First, change directory to the example you want to see. 
+1. Run NPM install from the `/paypal-examples` directory.
 
-> e.g. `cd SimpleExpressServer`
+```
+$ npm install
+```
 
-Now follow these steps:
+2. Run `install.js`
 
-1. `$ npm install`
-2. `$ node app.js`
-3. Open your browser to `http://localhost:3000/` or `http://localhost:8000` for the Kraken examples.
+```
+$ node install.js
+```
 
-Your terminal will output the logs of the data as it progresses through the various steps.
+You should see all of the examples get installed, similarly to this:
 
+```
+ExpressInContext NPM Packages Installed.....
+ExpressInContext Installed!
+HapiInContext NPM Packages Installed.....
+AngularAppInContext/server NPM Packages Installed.....
+SimpleExpressServer NPM Packages Installed.....
+SimpleExpressServer Installed!
+HapiInContext bower Packages Installed.....
+HapiInContext Installed!
+KrakenInContextAngular NPM Packages Installed.....
+KrakenInContext NPM Packages Installed.....
+KrakenInContextAngular bower Packages Installed.....
+KrakenInContextAngular Installed!
+KrakenInContext bower Packages Installed.....
+KrakenInContext Installed!
+AngularAppInContext/client NPM Packages Installed.....
+AngularAppInContext/client Bower Packages Installed.....
+AngularAppInContext Installed!
+```
